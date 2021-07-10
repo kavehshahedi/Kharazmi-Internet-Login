@@ -1,0 +1,27 @@
+{
+  "name": "publications-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/kavehshahedi/publications-library-back-end.git"
+  },
+  "author": "Kaveh Shahedi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/kavehshahedi/publications-library-back-end/issues"
+  },
+  "homepage": "https://gitlab.com/kavehshahedi/publications-library-back-end#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "ghasedak": "0.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.10"
+  }
+}
