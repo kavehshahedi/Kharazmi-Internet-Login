@@ -33,7 +33,7 @@ module.exports.requestLogin = function (data, callback) {
                 callback(OutputCreator.createResult({}));
             } else {
                 if (moment().isBefore(moment(verify.available_until, 'YYYY-MM-DD HH-mm-ss'))) {
-                    SmsService.sendLoginCode(phone, code);
+                    SmsService.sendLoginCode(phone, verify.code);
 
                     callback(OutputCreator.createResult({}));
                 } else {

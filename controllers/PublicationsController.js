@@ -83,8 +83,14 @@ module.exports.setFavorite = async function (data) {
     return new Promise(callback => {
         const id = data.id;
         const phone = data.phone;
+
+        if(phone.localeCompare('-1') === 0) {
+            callback(OutputCreator.createError('must_login', Variables.errors.auth.notLoggedIn));
+            return;
+        }
+
         User.findOne({ phone: phone }).exec(async (err, user) => {
-            if (err || !user) callback(OutputCreator.createError('general_error', Variables.errors.generalError));
+            if (err) callback(OutputCreator.createError('general_error', Variables.errors.generalError))
             else {
                 let contains = false;
                 user.favorite_publications.forEach(p => {

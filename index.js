@@ -70,8 +70,15 @@ function insertUniversities() {
     if(err) return;
     else {
         for(let p of pubs){
-            p.rate = (Math.floor(Math.random() * (40) ) + 10) / 10;
-            await p.save();
+            //p.rate = (Math.floor(Math.random() * (40) ) + 10) / 10;
+            //p.downloads_count = Math.floor(Math.random() * (10000));
+            //p.views_count = Math.floor(Math.random() * (100000));
+
+            if(!p.image_url.includes('kavehshahedi.ir')){
+                p.image_url = 'https://kavehshahedi.ir/saad/images/' + String(p.image_url).split('/')[4].split('.')[0] + '.jpg';
+            }
+
+            //await p.save();
         }
     }
 });*/

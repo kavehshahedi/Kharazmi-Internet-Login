@@ -12,7 +12,8 @@ module.exports = {
             InvalidAccessToken: 'کد دسترسی شما اشتباه است!',
             notVerified: 'شما احراز هویت پیامکی نکرده‌اید',
             lessThanReRequestTime: 'برای ارسال کد تایید جدید باید حداقل یک دقیقه صبر کنید.',
-            noVerifyObject: 'کد تاییدی برای شماره شما وجود ندارد.'
+            noVerifyObject: 'کد تایید وارد شده معتبر نیست.',
+            notLoggedIn: 'شما وارد حساب کاربری خود نشده اید.'
         },
 
         app: {

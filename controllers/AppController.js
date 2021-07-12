@@ -11,7 +11,7 @@ module.exports.getMainPage = async function (data) {
     const sliders = await SlidersController.getSlidersByCategory('main-page', retrieveDataLimit);
     const POTM = await PublicationsController.getPublicationsOfTheMonth(retrieveDataLimit);
     const LP = await PublicationsController.getLatestPublications(retrieveDataLimit);
-    const UOTM = await UniversitiesController.getUniversitiesOfTheMonth(retrieveDataLimit);
+    //const UOTM = await UniversitiesController.getUniversitiesOfTheMonth(retrieveDataLimit);
     const MDP = await PublicationsController.getMostDownloadedPublications(retrieveDataLimit);
     const MVP = await PublicationsController.getMostViewedPublications(retrieveDataLimit);
 
@@ -28,19 +28,19 @@ module.exports.getMainPage = async function (data) {
                 category_name: 'آخرین نشریات',
                 data: LP
             },
-            {
+            /*{
                 category_id: 'universities_of_the_month',
                 category_name: 'دانشگاه‌های برتر ماه',
                 data: UOTM
-            },
+            },*/
             {
                 category_id: 'most_downloaded_publications',
-                category_name: 'پر دانلود ترین نشریات',
+                category_name: 'پر دانلودترین نشریات',
                 data: MDP
             },
             {
                 category_id: 'most_viewed_publications',
-                category_name: 'پر بازدید ترین نشریات',
+                category_name: 'پر بازدیدترین نشریات',
                 data: MVP
             }
         ]
