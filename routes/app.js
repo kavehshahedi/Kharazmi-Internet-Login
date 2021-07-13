@@ -10,6 +10,10 @@ router.post('/get-main-page', async (req, res) => {
     return res.json(OutputCreator.createResult(pubs));
 });
 
+router.post('/get-category', async (req, res) => {
+    return res.json(OutputCreator.createResult(await AppController.getCategoryPublications(req.body.id)));
+});
+
 router.post('/get-publication', async (req, res) => {
     return res.json(await AppController.getPublication(req.body));
 });

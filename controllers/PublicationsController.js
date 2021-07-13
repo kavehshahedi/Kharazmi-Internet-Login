@@ -22,22 +22,22 @@ module.exports.getPublication = async function (id) {
 module.exports.getPublicationsOfTheMonth = async function (limit) {
     const thisMonth = moment().endOf('day').add(-30, 'days').toDate();
     return await queryPublications({ is_potm: true, is_active: true, potm_date: { $gte: thisMonth } },
-        limit, { released_at: -1 }, 'title number creators.university_name creators.association_name image_url _id');
+        limit, { released_at: -1 }, 'title number creators.university_name creators.association_name image_url _id rate');
 }
 
 module.exports.getLatestPublications = async function (limit) {
     return await queryPublications({ is_active: true },
-        limit, { released_at: -1 }, 'title number creators.university_name creators.association_name image_url _id');
+        limit, { released_at: -1 }, 'title number creators.university_name creators.association_name image_url _id rate');
 }
 
 module.exports.getMostDownloadedPublications = async function (limit) {
     return await queryPublications({ is_active: true }, limit, { downloads_count: -1 },
-        'title number creators.university_name creators.association_name image_url _id');
+        'title number creators.university_name creators.association_name image_url _id rate');
 }
 
 module.exports.getMostViewedPublications = async function (limit) {
     return await queryPublications({ is_active: true }, limit, { views_count: -1 },
-        'title number creators.university_name creators.association_name image_url _id');
+        'title number creators.university_name creators.association_name image_url _id rate');
 }
 
 module.exports.searchPublications = async function (data) {

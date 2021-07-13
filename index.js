@@ -63,8 +63,40 @@ function insertUniversities() {
 
 }
 
+function insertComments() {
+    require('fs').readFile('uni.txt', (err, file) => {
+        if (err) return;
+        let data = [];
+        String(file).split('\r\n').forEach(pub => {
+            const d = pub.split(';');
+            data.push({
+                name: d[0],
+                message: d[1],
+                rate: d[2]
+            });
+        });
+
+        require('./models/publications/Publications').find({}).exec(async (err, pubs) => {
+            if(err) return;
+            else {
+                for(let p of pubs) {
+                    for(let i = 0; i < data.length; i++) {
+                        const c = data[i];
+                        if(Math.floor(p.rate) == c.rate) {
+                            p.comments.push(data[i]);
+                        }
+                    }
+
+                    await p.save();
+                }
+            }
+        });
+    });
+}
+
 //insertPublications();
 //insertUniversities();
+//insertComments();
 
 /*require('./models/publications/Publications').find({}).exec(async (err, pubs) => {
     if(err) return;
@@ -74,11 +106,12 @@ function insertUniversities() {
             //p.downloads_count = Math.floor(Math.random() * (10000));
             //p.views_count = Math.floor(Math.random() * (100000));
 
-            if(!p.image_url.includes('kavehshahedi.ir')){
-                p.image_url = 'https://kavehshahedi.ir/saad/images/' + String(p.image_url).split('/')[4].split('.')[0] + '.jpg';
+            if(p.rate > 4) {
+                p.is_potm = true;
+                p.potm_date  = Date.now()
             }
 
-            //await p.save();
+            await p.save();
         }
     }
 });*/

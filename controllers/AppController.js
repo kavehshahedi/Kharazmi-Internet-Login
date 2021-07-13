@@ -49,7 +49,7 @@ module.exports.getMainPage = async function (data) {
 
 module.exports.getPublication = async function (data) {
     const result = await PublicationsController.getPublication(data.id);
-    if(result == -1) return OutputCreator.createError('General error', Variables.errors.generalError);
+    if (result == -1) return OutputCreator.createError('General error', Variables.errors.generalError);
     else if (result == -2) return OutputCreator.createError('Publication not found', Variables.errors.app.publicationNotFound);
     else return OutputCreator.createResult(result);
 }
@@ -64,4 +64,30 @@ module.exports.setFavorite = async function (data) {
 
 module.exports.getFavoritePublications = async function (data) {
     return await PublicationsController.getFavoritePublications(data);
+}
+
+module.exports.getCategoryPublications = async function (category) {
+    let data = [];
+    let categoryName = '';
+
+    switch (category) {
+        case 'publications_of_the_month':
+            data = await PublicationsController.getPublicationsOfTheMonth(100);
+            categoryName = 'نشریات برتر ماه';
+            break;
+        case 'latest_publications':
+            data = await PublicationsController.getLatestPublications(100);
+            categoryName = 'آخرین نشریات';
+            break;
+        case 'most_downloaded_publications':
+            data = await PublicationsController.getMostDownloadedPublications(100);
+            categoryName = 'پر دانلودترین نشریات';
+            break;
+        case 'most_viewed_publications':
+            data = await PublicationsController.getMostViewedPublications(100);
+            categoryName = 'پر بازدیدترین نشریات';
+            break;
+    }
+
+    return { category_name: categoryName, data: data };
 }
